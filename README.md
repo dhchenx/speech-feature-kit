@@ -1,2 +1,4 @@
-# speech-feature-kit
-A python wrapper for speech feature extractoin
+# Speech Feature Kit
+
+A Python wrapper for convenient speech feature extraction
+
