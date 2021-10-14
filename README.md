@@ -1,6 +1,6 @@
-# Speech Feature Kit (Alpha-version)
+# Speech Feature Kit 
 
-A Python wrapper for convenient speech feature extraction
+A Python wrapper for convenient speech feature extraction. (Alpha version)
 
 ## Installation 
 
