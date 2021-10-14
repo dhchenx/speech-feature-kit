@@ -1,4 +1,5 @@
-peppercorn
+numpy
+scipy
 
 [dev]
 check-manifest

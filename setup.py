@@ -36,12 +36,12 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.0.dev2',  # Required
+    version='1.0.0.dev4',  # Required
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
-    description='This is a kit for simple speech feature extraction',  # Optional
+    description='This is a kit for simple speech feature extraction.',  # Optional
 
     # This is an optional longer description of your project that represents
     # the body of text which users will see when they visit PyPI.
@@ -142,7 +142,10 @@ setup(
     #
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['peppercorn'],  # Optional
+    install_requires=[
+        'numpy',
+        "scipy"
+    ],  # Optional
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
@@ -169,7 +172,7 @@ setup(
     #
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
     data_files=[
-        ('my_data', ['data/english.wav'])
+        ('speech-test-data', ['data/english.wav'])
     ],  # Optional
 
     # To provide executable scripts, use entry points in preference to the
@@ -195,7 +198,7 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={  # Optional
-        'Bug Reports': 'https://github.com/dhchenx/speech-feature-kit',
+        'Bug Reports': 'https://github.com/dhchenx/speech-feature-kit/issues',
         'Say Thanks!': 'https://github.com/aishoot/Speech_Feature_Extraction',
         'Source': 'https://github.com/dhchenx/speech-feature-kit',
     },
