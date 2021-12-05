@@ -1,8 +1,8 @@
 numpy
 scipy
-pickle
 librosa
 soundfile
+tensorflow
 
 [dev]
 check-manifest

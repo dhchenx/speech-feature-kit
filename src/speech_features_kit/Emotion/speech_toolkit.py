@@ -7,7 +7,13 @@ import librosa
 import os
 
 class SpeechEmotionToolkit:
-    def __init__(self, model_path, model_para_path, VOICE_LEN=32000):
+    def __init__(self, model_path=None, model_para_path=None, VOICE_LEN=32000):
+        if model_path==None:
+            root_path = os.path.dirname(os.path.realpath(__file__))
+            model_path=os.path.join(root_path,"models","speech_mfcc_model.h5")
+        if model_para_path==None:
+            root_path = os.path.dirname(os.path.realpath(__file__))
+            model_para_path=os.path.join(root_path,"models","mfcc_model_para_dict.pkl")
         self.VOICE_LEN = VOICE_LEN
         self.model_path = model_path
         self.model_para_path = model_para_path
@@ -171,10 +177,10 @@ class SpeechEmotionToolkit:
 
 
 def example_use():
-    speech_kit = SpeechEmotionToolkit(model_path='speech_emotion/speech_mfcc_model.h5',
-                                      model_para_path='speech_emotion/mfcc_model_para_dict.pkl')
+    speech_kit = SpeechEmotionToolkit(model_path='models/speech_mfcc_model.h5',
+                                      model_para_path='models/mfcc_model_para_dict.pkl')
     speech_kit.load()
-    list_emo, list_timestamp = speech_kit.get_emotion_list_by_blocks(audio_file="speech_emotion/haodf.mp3",
+    list_emo, list_timestamp = speech_kit.get_emotion_list_by_blocks(audio_file="models/haodf.mp3",
                                                                      num_sec_each_file=5)
 
     print("Time interval\tEmotion")

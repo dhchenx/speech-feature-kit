@@ -2,6 +2,11 @@
 
 A Python wrapper for convenient speech feature extraction
 
+## Installation
+```python
+pip install speech-features-kit
+```
+
 ## Functions
 1. MFCC feature analysis
 2. Volume analysis
@@ -12,17 +17,15 @@ A Python wrapper for convenient speech feature extraction
 from speech_features_kit.Emotion.speech_toolkit import SpeechEmotionToolkit
 
 # set the path of pre-trained model for speech emotion model
-speech_kit = SpeechEmotionToolkit(
-    model_path='../data/speech_emotion/speech_mfcc_model.h5',
-    model_para_path='../data/speech_emotion/mfcc_model_para_dict.pkl')
+# the used model here is optimized for Chinese speech; however, it is possible you can train your own model. 
+speech_kit = SpeechEmotionToolkit()
 
 # load the model
 speech_kit.load()
 
 # obtain emotion list with timestamp given an audio file
-## num_sec_each_file: specify the number of seconds each chunk contains when dividing the audio file
-list_emo, list_timestamp = speech_kit.get_emotion_list_by_blocks(audio_file="../data/speech_emotion/haodf.mp3",
-                                                                     num_sec_each_file=5)
+list_emo, list_timestamp = speech_kit.get_emotion_list_by_blocks(audio_file="../data/english.wav",
+                                                                     num_sec_each_file=1)
 
 # print the list of emotion over timestamp
 print("Time interval\tEmotion")

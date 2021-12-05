@@ -2,8 +2,8 @@ from speech_features_kit.Emotion.speech_toolkit import SpeechEmotionToolkit
 
 # set the path of pre-trained model for speech emotion model
 speech_kit = SpeechEmotionToolkit(
-    model_path='../data/speech_emotion/speech_mfcc_model.h5',
-    model_para_path='../data/speech_emotion/mfcc_model_para_dict.pkl')
+    model_path='../src/speech_features_kit/Emotion/models/speech_mfcc_model.h5',
+    model_para_path='../src/speech_features_kit/Emotion/models/mfcc_model_para_dict.pkl')
 
 # load the model
 speech_kit.load()
