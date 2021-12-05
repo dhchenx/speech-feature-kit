@@ -1,5 +1,8 @@
 numpy
 scipy
+pickle
+librosa
+soundfile
 
 [dev]
 check-manifest

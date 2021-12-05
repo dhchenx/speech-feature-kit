@@ -1,82 +1,36 @@
-# Speech Feature Kit 
+# Speech Feature Kit
 
-A Python wrapper for convenient speech feature extraction. (Alpha version)
+A Python wrapper for convenient speech feature extraction
 
-## Installation 
+## Functions
+1. MFCC feature analysis
+2. Volume analysis
+3. Emotion analysis
 
-```
-pip install speech-features-kit
-```
-
-## Dependencies
-
-1. numpy
-2. scipy
-
-## Credits
-
-[aishoot's Project](https://github.com/aishoot/Speech_Feature_Extraction)
-
-## Sample code
-
-Example 1:
-
+## Example of emotion analysis
 ```python
+from speech_features_kit.Emotion.speech_toolkit import SpeechEmotionToolkit
 
-import speech_features_kit.MFCC.MFCC as mf
+# set the path of pre-trained model for speech emotion model
+speech_kit = SpeechEmotionToolkit(
+    model_path='../data/speech_emotion/speech_mfcc_model.h5',
+    model_para_path='../data/speech_emotion/mfcc_model_para_dict.pkl')
 
-import scipy.io.wavfile as wav
+# load the model
+speech_kit.load()
 
-(rate,sig) = wav.read("output/english.wav")
-mfcc_feat = mf.mfcc(sig, rate)
-d_mfcc_feat = mf.delta(mfcc_feat, 2)
-fbank_feat = mf.logfbank(sig, rate)
+# obtain emotion list with timestamp given an audio file
+## num_sec_each_file: specify the number of seconds each chunk contains when dividing the audio file
+list_emo, list_timestamp = speech_kit.get_emotion_list_by_blocks(audio_file="../data/speech_emotion/haodf.mp3",
+                                                                     num_sec_each_file=5)
 
-print(fbank_feat[1:3,:])
-
-```
-
-Example 2:
-
-```python
-
-import wave
-import pylab as pl
-import numpy as np
-import speech_features_kit.Volume.Volume as vp
-
-# ============ test the algorithm =============
-# read wave file and get parameters.
-fw = wave.open('../data/english.wav','rb')
-params = fw.getparams()
-print(params)
-nchannels, sampwidth, framerate, nframes = params[:4]
-strData = fw.readframes(nframes)
-waveData = np.fromstring(strData, dtype=np.int16)
-waveData = waveData*1.0/max(abs(waveData))  # normalization
-fw.close()
-
-# calculate volume
-frameSize = 256
-overLap = 128
-volume11 = vp.calVolume(waveData,frameSize,overLap)
-volume12 = vp.calVolumeDB(waveData,frameSize,overLap)
-
-# plot the wave
-time = np.arange(0, nframes)*(1.0/framerate)
-time2 = np.arange(0, len(volume11))*(frameSize-overLap)*1.0/framerate
-pl.subplot(311)
-pl.plot(time, waveData)
-pl.ylabel("Amplitude")
-
-pl.subplot(312)
-pl.plot(time2, volume11)
-pl.ylabel("absSum")
-
-pl.subplot(313)
-pl.plot(time2, volume12, c="g")
-pl.ylabel("Decibel(dB)")
-pl.xlabel("time (seconds)")
-pl.show()
+# print the list of emotion over timestamp
+print("Time interval\tEmotion")
+for idx, e in enumerate(list_emo):
+    print(list_timestamp[idx], "\t", e)
 
 ```
+
+## Note
+Other functions please see the examples folder!
+

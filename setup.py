@@ -36,7 +36,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.0.dev4',  # Required
+    version='1.0.0.dev5',  # Required
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
@@ -144,7 +144,10 @@ setup(
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
         'numpy',
-        "scipy"
+        "scipy",
+        'pickle',
+        'librosa',
+        'soundfile',
     ],  # Optional
 
     # List additional groups of dependencies here (e.g. development
@@ -172,7 +175,7 @@ setup(
     #
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
     data_files=[
-        ('speech-test-data', ['data/english.wav'])
+       # ('speech-test-data', ['data/english.wav'])
     ],  # Optional
 
     # To provide executable scripts, use entry points in preference to the
